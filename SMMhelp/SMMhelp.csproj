@@ -64,6 +64,7 @@
     <Compile Include="RepostForm.Designer.cs">
       <DependentUpon>RepostForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SimpleAntiGate.cs" />
     <Compile Include="VKapi.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

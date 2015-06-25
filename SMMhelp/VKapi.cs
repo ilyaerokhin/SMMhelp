@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleAntiGate;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -59,7 +60,7 @@ namespace SMMhelp
                 result = result + string.Format(element.Element("id").Value) + "/";
             }
 
-            return result; 
+            return result.Substring(0, result.Length - 1);
         }
         public string WallRepost(string from_id, string post_id, string token)
         {
@@ -73,6 +74,77 @@ namespace SMMhelp
             }
 
             return resultPage;
+        }
+
+        public string FriendsGet(string token)
+        {
+            string resultPage = null;
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.vkontakte.ru/method/friends.get.xml?order=random&access_token=" + token);
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            using (StreamReader sr = new StreamReader(response.GetResponseStream(), Encoding.UTF8, true))
+            {
+                resultPage = sr.ReadToEnd();
+                sr.Close();
+            }
+
+            XDocument xml = XDocument.Load(new StringReader(resultPage));
+            string result ="";
+
+            foreach (XElement element in xml.Root.Elements("uid"))
+            {
+                result = result + string.Format(element.Value) + "/";
+            }
+
+            return result.Substring(0,result.Length-1); 
+        }
+
+        public string GroupsInvite(string group_id, string user_id, string token)
+        {
+            string resultPage = null;
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.vkontakte.ru/method/groups.invite.xml?group_id=" + group_id + "&user_id=" + user_id + "&access_token=" + token);
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            using (StreamReader sr = new StreamReader(response.GetResponseStream(), Encoding.UTF8, true))
+            {
+                resultPage = sr.ReadToEnd();
+                sr.Close();
+            }
+
+            if (resultPage.Contains("<error_code>14") == true)
+            {
+                XDocument xml = XDocument.Load(new StringReader(resultPage));
+                XElement element = xml.Root.Element("captcha_img");
+                string captcha_key = AntiGate.Recognize(string.Format(element.Value));
+                string captcha_sid = string.Format(xml.Root.Element("captcha_sid").Value);
+
+                resultPage = null;
+                request = (HttpWebRequest)WebRequest.Create("https://api.vkontakte.ru/method/groups.invite.xml?group_id=" + group_id + "&user_id=" + user_id + "&access_token=" + token + "&captcha_sid=" + captcha_sid + "&captcha_key=" + captcha_key);
+                response = (HttpWebResponse)request.GetResponse();
+                using (StreamReader sr = new StreamReader(response.GetResponseStream(), Encoding.UTF8, true))
+                {
+                    resultPage = sr.ReadToEnd();
+                    sr.Close();
+                }
+                //return AntiGate.Recognize(string.Format(element.Value));
+            }
+
+            if(resultPage.Contains("<response>1")==true)
+            {
+                return "0"; // приглашение выслано
+            }
+            else
+            {
+                if(resultPage.Contains("<error_code>103")==true)
+                {
+                    return "-1"; // лимит
+                }
+                if (resultPage.Contains("<error_code>15") == true)
+                {
+                    return "-2"; // пользователь ограничил или приглашение уже высылалось
+                }
+            }
+
+
+            return "-3"; // другая ошибка
         }
     }
 }

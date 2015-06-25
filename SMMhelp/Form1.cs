@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleAntiGate;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,10 +20,21 @@ namespace SMMhelp
         public StartForm()
         {
             InitializeComponent();
+            AntiGate.AntiGateKey = "23b239d9f768fd4d9d7cbbbed6ba763d";
             vk = new VKapi();
             //MessageBox.Show(vk.Authorization("79056613147", "НаткаСпирина"));
             //MessageBox.Show(vk.WallGet("nn.online",10));
             //MessageBox.Show(vk.WallRepost("10682771", "149054", vk.Authorization("79056613147", "НаткаСпирина")));
+            //MessageBox.Show(vk.FriendsGet(vk.Authorization("79056613147", "НаткаСпирина")));
+            string token = vk.Authorization("79063685218", "оплпГГНАк6764");
+
+            for (; ; )
+            {
+                string rez = vk.GroupsInvite("89830206", vk.FriendsGet(token).Split('/')[0], token);
+                MessageBox.Show(rez);
+                if (rez.Contains("-1")==true)
+                    break;
+            }
         }
 
         private void repostbutton_Click(object sender, EventArgs e)

@@ -52,8 +52,6 @@ namespace SMMhelp
 
                 foreach (string n in rez.Split('/'))
                 {
-                    if (n == "")
-                        break;
                     //MessageBox.Show(n);
                     posts.Add(group_id + ":" + n);
                 }
