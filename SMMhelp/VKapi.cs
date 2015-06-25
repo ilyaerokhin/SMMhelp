@@ -98,7 +98,7 @@ namespace SMMhelp
             return result.Substring(0,result.Length-1); 
         }
 
-        public string GroupsInvite(string group_id, string user_id, string token)
+        public int GroupsInvite(string group_id, string user_id, string token)
         {
             string resultPage = null;
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.vkontakte.ru/method/groups.invite.xml?group_id=" + group_id + "&user_id=" + user_id + "&access_token=" + token);
@@ -129,22 +129,22 @@ namespace SMMhelp
 
             if(resultPage.Contains("<response>1")==true)
             {
-                return "0"; // приглашение выслано
+                return 0; // приглашение выслано
             }
             else
             {
                 if(resultPage.Contains("<error_code>103")==true)
                 {
-                    return "-1"; // лимит
+                    return -1; // лимит
                 }
                 if (resultPage.Contains("<error_code>15") == true)
                 {
-                    return "-2"; // пользователь ограничил или приглашение уже высылалось
+                    return -2; // пользователь ограничил или приглашение уже высылалось
                 }
             }
 
 
-            return "-3"; // другая ошибка
+            return -3; // другая ошибка
         }
     }
 }

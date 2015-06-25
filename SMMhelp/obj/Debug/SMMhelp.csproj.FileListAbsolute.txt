@@ -14,3 +14,4 @@ c:\users\илья\documents\visual studio 2013\Projects\SMMhelp\SMMhelp\obj\Debu
 c:\users\илья\documents\visual studio 2013\Projects\SMMhelp\SMMhelp\obj\Debug\SMMhelp.pdb
 C:\Users\Илья\documents\visual studio 2013\Projects\SMMhelp\SMMhelp\obj\Debug\SMMhelp.StartForm.resources
 C:\Users\Илья\documents\visual studio 2013\Projects\SMMhelp\SMMhelp\obj\Debug\SMMhelp.RepostForm.resources
+C:\Users\Илья\documents\visual studio 2013\Projects\SMMhelp\SMMhelp\obj\Debug\SMMhelp.InviteForm.resources

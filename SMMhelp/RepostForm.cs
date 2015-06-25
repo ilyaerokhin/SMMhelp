@@ -105,7 +105,7 @@ namespace SMMhelp
                 //MessageBox.Show(login + " " + password);
             }
             akk.Close();
-            MessageBox.Show("Конец\a");
+            MessageBox.Show("Конец");
         }
     }
 }

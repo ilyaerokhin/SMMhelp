@@ -26,20 +26,26 @@ namespace SMMhelp
             //MessageBox.Show(vk.WallGet("nn.online",10));
             //MessageBox.Show(vk.WallRepost("10682771", "149054", vk.Authorization("79056613147", "НаткаСпирина")));
             //MessageBox.Show(vk.FriendsGet(vk.Authorization("79056613147", "НаткаСпирина")));
-            string token = vk.Authorization("79063685218", "оплпГГНАк6764");
+            //string token = vk.Authorization("79063685218", "оплпГГНАк6764");
 
-            for (; ; )
-            {
-                string rez = vk.GroupsInvite("89830206", vk.FriendsGet(token).Split('/')[0], token);
-                MessageBox.Show(rez);
-                if (rez.Contains("-1")==true)
-                    break;
-            }
+            //for (; ; )
+            //{
+            //    string rez = vk.GroupsInvite("89830206", vk.FriendsGet(token).Split('/')[0], token);
+            //    MessageBox.Show(rez);
+            //    if (rez.Contains("-1")==true)
+            //        break;
+            //}
         }
 
         private void repostbutton_Click(object sender, EventArgs e)
         {
             RepostForm form = new RepostForm();
+            form.Show();
+        }
+
+        private void invitingbutton_Click(object sender, EventArgs e)
+        {
+            InviteForm form = new InviteForm();
             form.Show();
         }
     }
