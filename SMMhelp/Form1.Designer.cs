@@ -32,6 +32,8 @@
             this.invitingbutton = new System.Windows.Forms.Button();
             this.friendsbutton = new System.Windows.Forms.Button();
             this.scriptbutton = new System.Windows.Forms.Button();
+            this.antilabel = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // repostbutton
@@ -74,11 +76,35 @@
             this.scriptbutton.UseVisualStyleBackColor = true;
             this.scriptbutton.Click += new System.EventHandler(this.scriptbutton_Click);
             // 
+            // antilabel
+            // 
+            this.antilabel.AutoSize = true;
+            this.antilabel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.antilabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.antilabel.Location = new System.Drawing.Point(141, 137);
+            this.antilabel.Name = "antilabel";
+            this.antilabel.Size = new System.Drawing.Size(17, 18);
+            this.antilabel.TabIndex = 58;
+            this.antilabel.Text = "0";
+            this.antilabel.Click += new System.EventHandler(this.antilabel_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.Location = new System.Drawing.Point(9, 137);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(126, 18);
+            this.label9.TabIndex = 57;
+            this.label9.Text = "Баланс антипачи";
+            // 
             // StartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(283, 133);
+            this.ClientSize = new System.Drawing.Size(283, 164);
+            this.Controls.Add(this.antilabel);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.scriptbutton);
             this.Controls.Add(this.friendsbutton);
             this.Controls.Add(this.invitingbutton);
@@ -87,6 +113,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SMM помощник";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -96,6 +123,8 @@
         private System.Windows.Forms.Button invitingbutton;
         private System.Windows.Forms.Button friendsbutton;
         private System.Windows.Forms.Button scriptbutton;
+        private System.Windows.Forms.Label antilabel;
+        private System.Windows.Forms.Label label9;
 
     }
 }

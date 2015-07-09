@@ -59,6 +59,10 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button = new System.Windows.Forms.Button();
             this.checkBox = new System.Windows.Forms.CheckBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.antilabel = new System.Windows.Forms.Label();
+            this.Аккаунты = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Друзья = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -346,14 +350,18 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.HighlightText;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Аккаунты,
+            this.Друзья});
             this.dataGridView1.GridColor = System.Drawing.SystemColors.AppWorkspace;
             this.dataGridView1.Location = new System.Drawing.Point(553, 22);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(215, 298);
+            this.dataGridView1.Size = new System.Drawing.Size(203, 298);
             this.dataGridView1.TabIndex = 53;
             // 
             // button
@@ -377,11 +385,45 @@
             this.checkBox.Text = "Выключить в конце";
             this.checkBox.UseVisualStyleBackColor = true;
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.Location = new System.Drawing.Point(198, 40);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(80, 18);
+            this.label9.TabIndex = 55;
+            this.label9.Text = "Антикапча";
+            // 
+            // antilabel
+            // 
+            this.antilabel.AutoSize = true;
+            this.antilabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.antilabel.Location = new System.Drawing.Point(317, 40);
+            this.antilabel.Name = "antilabel";
+            this.antilabel.Size = new System.Drawing.Size(17, 18);
+            this.antilabel.TabIndex = 56;
+            this.antilabel.Text = "0";
+            // 
+            // Аккаунты
+            // 
+            this.Аккаунты.HeaderText = "Аккаунты";
+            this.Аккаунты.Name = "Аккаунты";
+            this.Аккаунты.ReadOnly = true;
+            // 
+            // Друзья
+            // 
+            this.Друзья.HeaderText = "Друзья";
+            this.Друзья.Name = "Друзья";
+            this.Друзья.ReadOnly = true;
+            // 
             // ScriptForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(780, 332);
+            this.ClientSize = new System.Drawing.Size(767, 332);
+            this.Controls.Add(this.antilabel);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.checkBox);
             this.Controls.Add(this.button);
             this.Controls.Add(this.dataGridView1);
@@ -415,6 +457,7 @@
             this.Controls.Add(this.label1);
             this.Name = "ScriptForm";
             this.Text = "ScriptForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ScriptForm_FormClosing);
             this.Shown += new System.EventHandler(this.ScriptForm_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -455,5 +498,9 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button;
         private System.Windows.Forms.CheckBox checkBox;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label antilabel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Аккаунты;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Друзья;
     }
 }

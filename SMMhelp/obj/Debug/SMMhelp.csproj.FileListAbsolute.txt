@@ -17,3 +17,22 @@ C:\Users\Илья\documents\visual studio 2013\Projects\SMMhelp\SMMhelp\obj\Debu
 C:\Users\Илья\documents\visual studio 2013\Projects\SMMhelp\SMMhelp\obj\Debug\SMMhelp.RepostForm.resources
 C:\Users\Илья\documents\visual studio 2013\Projects\SMMhelp\SMMhelp\obj\Debug\SMMhelp.ScriptForm.resources
 C:\Users\Илья\documents\visual studio 2013\Projects\SMMhelp\SMMhelp\obj\Debug\SMMhelp.csproj.GenerateResource.Cache
+C:\Users\user\Documents\GitHub\SMMhelp\SMMhelp\bin\Debug\SMMhelp.exe.config
+C:\Users\user\Documents\GitHub\SMMhelp\SMMhelp\obj\Debug\SMMhelp.exe
+C:\Users\user\Documents\GitHub\SMMhelp\SMMhelp\obj\Debug\SMMhelp.pdb
+C:\Users\user\Documents\GitHub\SMMhelp\SMMhelp\bin\Debug\SMMhelp.exe
+C:\Users\user\Documents\GitHub\SMMhelp\SMMhelp\bin\Debug\SMMhelp.pdb
+C:\Users\user\Documents\GitHub\SMMhelp\SMMhelp\bin\Debug\HtmlAgilityPack.dll
+C:\Users\user\Documents\GitHub\SMMhelp\SMMhelp\bin\Debug\Newtonsoft.Json.dll
+C:\Users\user\Documents\GitHub\SMMhelp\SMMhelp\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\user\Documents\GitHub\SMMhelp\SMMhelp\bin\Debug\HtmlAgilityPack.xml
+C:\Users\user\Documents\GitHub\SMMhelp\SMMhelp\bin\Debug\Newtonsoft.Json.pdb
+C:\Users\user\Documents\GitHub\SMMhelp\SMMhelp\bin\Debug\Newtonsoft.Json.xml
+C:\Users\user\Documents\GitHub\SMMhelp\SMMhelp\obj\Debug\SMMhelp.csprojResolveAssemblyReference.cache
+C:\Users\user\Documents\GitHub\SMMhelp\SMMhelp\obj\Debug\SMMhelp.AddFriendsForm.resources
+C:\Users\user\Documents\GitHub\SMMhelp\SMMhelp\obj\Debug\SMMhelp.StartForm.resources
+C:\Users\user\Documents\GitHub\SMMhelp\SMMhelp\obj\Debug\SMMhelp.InviteForm.resources
+C:\Users\user\Documents\GitHub\SMMhelp\SMMhelp\obj\Debug\SMMhelp.Properties.Resources.resources
+C:\Users\user\Documents\GitHub\SMMhelp\SMMhelp\obj\Debug\SMMhelp.RepostForm.resources
+C:\Users\user\Documents\GitHub\SMMhelp\SMMhelp\obj\Debug\SMMhelp.ScriptForm.resources
+C:\Users\user\Documents\GitHub\SMMhelp\SMMhelp\obj\Debug\SMMhelp.csproj.GenerateResource.Cache

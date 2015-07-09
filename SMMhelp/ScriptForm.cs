@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleAntiGate;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -6,6 +7,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Net;
 using System.Text;
 using System.Threading;
@@ -17,6 +19,7 @@ namespace SMMhelp
     public partial class ScriptForm : Form
     {
         Thread thread;
+        Thread thread2;
         bool flag;
         VKapi vk;
         OpenFileDialog OFD;
@@ -29,18 +32,30 @@ namespace SMMhelp
         {
             InitializeComponent();
             OFD = new OpenFileDialog();
-            if (OFD.ShowDialog() != DialogResult.OK)
-            {
-                return;
-            }
             vk = new VKapi();
         }
 
         private void ScriptForm_Shown(object sender, EventArgs e)
         {
             thread = new Thread(new System.Threading.ThreadStart(delegate { Fun(); }));
+            thread2 = new Thread(new System.Threading.ThreadStart(delegate { AntiGateBalance(); }));
+
+            if (OFD.ShowDialog() != DialogResult.OK)
+            {
+                this.Close();
+                return;
+            }
+
             thread.Start();
+            thread2.Start();
+
             flag = true;
+        }
+
+        private void AntiGateBalance()
+        {
+            antilabel.Invoke(new MethodInvoker(delegate { antilabel.Text = AntiGate.GetBalance() + "$"; }));
+            Thread.Sleep(60000);
         }
 
         private void Fun()
@@ -78,8 +93,8 @@ namespace SMMhelp
             StreamReader akk = new StreamReader(OFD.FileName);
             string lines;
 
-            dataGridView1.Invoke(new MethodInvoker(delegate { dataGridView1.Columns.Add("Аккаунты", "Аккаунты"); }));
-            dataGridView1.Invoke(new MethodInvoker(delegate { dataGridView1.Columns.Add("Друзья", "Друзья"); }));
+            //dataGridView1.Invoke(new MethodInvoker(delegate { dataGridView1.Columns.Add("Аккаунты", "Аккаунты"); }));
+            //dataGridView1.Invoke(new MethodInvoker(delegate { dataGridView1.Columns.Add("Друзья", "Друзья"); }));
 
             while (!akk.EndOfStream)
             {
@@ -304,6 +319,7 @@ namespace SMMhelp
                 Process.Start("shutdown", "/s /t 0");
             }
             akk.Close();
+            SystemSounds.Beep.Play();
             MessageBox.Show("Конец");
         }
 
@@ -320,6 +336,20 @@ namespace SMMhelp
                 thread.Resume();
                 button.Text = "Пауза";
                 flag = true;
+            }
+        }
+
+        private void ScriptForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //MessageBox.Show(thread.ThreadState.ToString());
+            if (!thread.ThreadState.ToString().Contains("Suspended"))
+            {
+                thread.Abort();
+            }
+
+            if (!thread2.ThreadState.ToString().Contains("Suspended"))
+            {
+                thread2.Abort();
             }
         }
     }

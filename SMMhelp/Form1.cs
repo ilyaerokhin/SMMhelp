@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,11 +23,15 @@ namespace SMMhelp
             InitializeComponent();
             AntiGate.AntiGateKey = "23b239d9f768fd4d9d7cbbbed6ba763d";
             vk = new VKapi();
+            antilabel.Text = AntiGate.GetBalance() + "$";
+            //MessageBox.Show(AntiGate.GetBalance());
+            //SystemSounds.Beep.Play();
+            //SystemSounds.Hand.Play();
             //MessageBox.Show(vk.Authorization("79056613147", "НаткаСпирина"));
             //MessageBox.Show(vk.WallGet("10682771", 10));
             //MessageBox.Show(vk.WallRepost("10682771", "149054", vk.Authorization("79056613147", "НаткаСпирина")));
             //MessageBox.Show(vk.FriendsGet(vk.Authorization("79056613147", "НаткаСпирина")));
-            string token = vk.Authorization("sparta24@rambler.ru", "НаткаСпирина");
+            //string token = vk.Authorization("sparta24@rambler.ru", "НаткаСпирина");
             //MessageBox.Show(vk.WallPost("44021730",vk.WallGet("44021730","suggests","1",token).Split('/')[0],token));
             //MessageBox.Show(vk.WallGet("44021730", "suggests", "1", token));
 
@@ -62,6 +67,11 @@ namespace SMMhelp
         {
             ScriptForm form = new ScriptForm();
             form.Show();
+        }
+
+        private void antilabel_Click(object sender, EventArgs e)
+        {
+            antilabel.Text = AntiGate.GetBalance() + "$";
         }
 
     }
