@@ -120,6 +120,7 @@
             this.Name = "RepostForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RepostForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.RepostForm_FormClosed);
             this.Shown += new System.EventHandler(this.RepostForm_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();

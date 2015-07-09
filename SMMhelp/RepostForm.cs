@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,6 +18,8 @@ namespace SMMhelp
         List<string> posts;
         VKapi vk;
         OpenFileDialog OFD;
+        int min = 5000;
+        int max = 20000;
 
         public RepostForm()
         {
@@ -26,7 +29,7 @@ namespace SMMhelp
             {
                 return;
             }
-            //MessageBox.Show(OFD.FileName);
+            vk = new VKapi();
         }
 
         private void RepostForm_Shown(object sender, EventArgs e)
@@ -40,7 +43,6 @@ namespace SMMhelp
             StreamReader sr = new StreamReader("group_list.txt");
             string line;
             posts = new List<string>();
-            vk = new VKapi();
 
             while (!sr.EndOfStream)
             {
@@ -48,7 +50,7 @@ namespace SMMhelp
                 string group_id = line.Split(':')[0];
                 string num_of_posts = line.Split(':')[1];
 
-                string rez = vk.WallGet(group_id, num_of_posts);
+                string rez = vk.WallGet(group_id, Convert.ToInt32(num_of_posts));
 
                 foreach (string n in rez.Split('/'))
                 {
@@ -72,6 +74,11 @@ namespace SMMhelp
                 string password = lines.Substring(lines.IndexOf(':') + 1);
                 listBox.Invoke(new MethodInvoker(delegate { listBox.Items.Insert(0, "Логинемся в vk.com Логин: " + login + " Пароль:" + password); }));
                 string token = vk.Authorization(login, password);
+                if (token.Contains("Заблокирован") == true)
+                {
+                    listBox.Invoke(new MethodInvoker(delegate { listBox.Items.Insert(0, "Аккаунт заблокирован"); }));
+                    continue;
+                }
                 listBox.Invoke(new MethodInvoker(delegate { listBox.Items.Insert(0, "Получаем Token: " + token); }));
 
                 Random rand = new Random(DateTime.Now.Millisecond);
@@ -89,7 +96,7 @@ namespace SMMhelp
                         if (list_posts.Contains(n) == false)
                         {
                             list_posts.Add(n);
-                            int timesleep = rand.Next(15000, 45000);
+                            int timesleep = rand.Next(min, max);
                             vk.WallRepost(posts[n].Split(':')[0], posts[n].Split(':')[1], token);
                             repostlabel.Invoke(new MethodInvoker(delegate { repostlabel.Text = (Int32.Parse(repostlabel.Text) + 1).ToString(); }));
                             listBox.Invoke(new MethodInvoker(delegate { listBox.Items.Insert(0, "vk.com/wall-" + posts[n].Split(':')[0] + "_" + posts[n].Split(':')[1]); }));
@@ -106,6 +113,11 @@ namespace SMMhelp
             }
             akk.Close();
             MessageBox.Show("Конец");
+        }
+
+        private void RepostForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
         }
     }
 }

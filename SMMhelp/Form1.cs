@@ -23,18 +23,20 @@ namespace SMMhelp
             AntiGate.AntiGateKey = "23b239d9f768fd4d9d7cbbbed6ba763d";
             vk = new VKapi();
             //MessageBox.Show(vk.Authorization("79056613147", "НаткаСпирина"));
-            //MessageBox.Show(vk.WallGet("nn.online",10));
+            //MessageBox.Show(vk.WallGet("10682771", 10));
             //MessageBox.Show(vk.WallRepost("10682771", "149054", vk.Authorization("79056613147", "НаткаСпирина")));
             //MessageBox.Show(vk.FriendsGet(vk.Authorization("79056613147", "НаткаСпирина")));
-            //string token = vk.Authorization("79063685218", "оплпГГНАк6764");
+            string token = vk.Authorization("sparta24@rambler.ru", "НаткаСпирина");
+            //MessageBox.Show(vk.WallPost("44021730",vk.WallGet("44021730","suggests","1",token).Split('/')[0],token));
+            //MessageBox.Show(vk.WallGet("44021730", "suggests", "1", token));
 
-            //for (; ; )
+            //foreach (string friend in vk.UsersSearch(0,token).Split('/'))
             //{
-            //    string rez = vk.GroupsInvite("89830206", vk.FriendsGet(token).Split('/')[0], token);
-            //    MessageBox.Show(rez);
-            //    if (rez.Contains("-1")==true)
-            //        break;
+            //    int rez = vk.FriendsAdd(friend, token);
+            //    MessageBox.Show(rez.ToString());
             //}
+            //MessageBox.Show(vk.UsersSearch(0,14,token));
+
         }
 
         private void repostbutton_Click(object sender, EventArgs e)
@@ -47,6 +49,20 @@ namespace SMMhelp
         {
             InviteForm form = new InviteForm();
             form.Show();
+
         }
+
+        private void friendsbutton_Click(object sender, EventArgs e)
+        {
+            AddFriendsForm form = new AddFriendsForm();
+            form.Show();
+        }
+
+        private void scriptbutton_Click(object sender, EventArgs e)
+        {
+            ScriptForm form = new ScriptForm();
+            form.Show();
+        }
+
     }
 }
