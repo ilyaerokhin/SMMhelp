@@ -57,12 +57,12 @@
             this.label21 = new System.Windows.Forms.Label();
             this.allfriendslabel = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Аккаунты = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Друзья = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button = new System.Windows.Forms.Button();
             this.checkBox = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.antilabel = new System.Windows.Forms.Label();
-            this.Аккаунты = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Друзья = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -364,6 +364,18 @@
             this.dataGridView1.Size = new System.Drawing.Size(203, 298);
             this.dataGridView1.TabIndex = 53;
             // 
+            // Аккаунты
+            // 
+            this.Аккаунты.HeaderText = "Аккаунты";
+            this.Аккаунты.Name = "Аккаунты";
+            this.Аккаунты.ReadOnly = true;
+            // 
+            // Друзья
+            // 
+            this.Друзья.HeaderText = "Друзья";
+            this.Друзья.Name = "Друзья";
+            this.Друзья.ReadOnly = true;
+            // 
             // button
             // 
             this.button.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -404,18 +416,6 @@
             this.antilabel.Size = new System.Drawing.Size(17, 18);
             this.antilabel.TabIndex = 56;
             this.antilabel.Text = "0";
-            // 
-            // Аккаунты
-            // 
-            this.Аккаунты.HeaderText = "Аккаунты";
-            this.Аккаунты.Name = "Аккаунты";
-            this.Аккаунты.ReadOnly = true;
-            // 
-            // Друзья
-            // 
-            this.Друзья.HeaderText = "Друзья";
-            this.Друзья.Name = "Друзья";
-            this.Друзья.ReadOnly = true;
             // 
             // ScriptForm
             // 

@@ -26,8 +26,11 @@ namespace SMMhelp
         List<string> posts;
         int min = 100;
         int max = 1500;
+        int invitemin = 1000;
+        int invitemax = 3000;
         int postmin = 100;
         int postmax = 5000;
+
         public ScriptForm()
         {
             InitializeComponent();
@@ -64,9 +67,9 @@ namespace SMMhelp
             StreamReader sr = new StreamReader("group_list.txt");
             string line;
             posts = new List<string>();
-            int cnt = 16;
-            int[] count = { 4, 4, 4, 4 };
-            string[] groups = { "10682771", "65327228", "59375874", "2001458" };
+            int cnt = 12;
+            int[] count = { 4, 4, /*4,*/ 4 };
+            string[] groups = { "10682771", "65327228", /*"59375874",*/ "2001458" };
             DataTable dt = new DataTable();
 
             while (!sr.EndOfStream)
@@ -215,7 +218,7 @@ namespace SMMhelp
                     {
                         //AutoClosingMessageBox.Show("Проблемы с антикапчей", "", 2000);
                     }
-                    int timesleep = rand.Next(min, max);
+                    int timesleep = rand.Next(invitemin, invitemax);
                     if (listBox.Items[0].ToString().Contains("Задержка:"))
                     {
                         listBox.Invoke(new MethodInvoker(delegate { listBox.Items.RemoveAt(0); }));
@@ -229,89 +232,91 @@ namespace SMMhelp
                 // В СООБЩЕСТВА
 
                 int g = 0;
-                do
+                if (cnt > 0)
                 {
-                    g = rand.Next(0, 4);
-                    //MessageBox.Show(i.ToString());
-                } while ((count[g] < 0) == true);
-
-                cnt--;
-                count[g]--;
-                string list_friends = vk.FriendsGet(token);
-                listBox.Invoke(new MethodInvoker(delegate { listBox.Items.Insert(0, "Получаем список друзей"); }));
-                listBox.Invoke(new MethodInvoker(delegate { listBox.Items.Insert(0, "Начинаем приглашать"); }));
-
-                foreach (string friend in list_friends.Split('/'))
-                {
-                    bool flag = false;
-                    Directory.CreateDirectory("inviting\\" + groups[g]);
-
-                    if (File.Exists("inviting\\" + groups[g] + "\\all.txt") == false)
+                    do
                     {
-                        File.Create("inviting\\" + groups[g] + "\\all.txt").Close();
-                    }
-                    StreamReader lr = new StreamReader("inviting\\" + groups[g] + "\\all.txt");
+                        g = rand.Next(0, count.Length);
+                        //MessageBox.Show(i.ToString());
+                    } while ((count[g] < 0) == true);
 
-                    while (!lr.EndOfStream)
+                    cnt--;
+                    count[g]--;
+                    string list_friends = vk.FriendsGet(token);
+                    listBox.Invoke(new MethodInvoker(delegate { listBox.Items.Insert(0, "Получаем список друзей"); }));
+                    listBox.Invoke(new MethodInvoker(delegate { listBox.Items.Insert(0, "Начинаем приглашать"); }));
+
+                    foreach (string friend in list_friends.Split('/'))
                     {
-                        if (friend.Equals(lr.ReadLine()) == true)
+                        bool flag = false;
+                        Directory.CreateDirectory("inviting\\" + groups[g]);
+
+                        if (File.Exists("inviting\\" + groups[g] + "\\all.txt") == false)
                         {
-                            flag = true;
-                            break;
+                            File.Create("inviting\\" + groups[g] + "\\all.txt").Close();
                         }
-                    }
-                    lr.Close();
-                    if (flag == true)
-                    {
-                        logGlabel.Invoke(new MethodInvoker(delegate { logGlabel.Text = (Int32.Parse(logGlabel.Text) + 1).ToString(); }));
-                        continue;
-                    }
-                    try
-                    {
-                        int j = vk.GroupsInvite(groups[g], friend, token);
+                        StreamReader lr = new StreamReader("inviting\\" + groups[g] + "\\all.txt");
 
-                        requestGlabel.Invoke(new MethodInvoker(delegate { requestGlabel.Text = (Int32.Parse(requestGlabel.Text) + 1).ToString(); }));
-                        if (j == 0)
+                        while (!lr.EndOfStream)
                         {
-                            StreamWriter writer = File.AppendText("inviting\\" + groups[g] + "\\all.txt");
-                            writer.WriteLine(friend, Encoding.UTF8);
-                            writer.Flush();
-                            writer.Close();
-                            writer = File.AppendText("inviting\\" + groups[g] + "\\good.txt");
-                            writer.WriteLine(friend, Encoding.UTF8);
-                            writer.Flush();
-                            writer.Close();
-                            inviteGlabel.Invoke(new MethodInvoker(delegate { inviteGlabel.Text = (Int32.Parse(inviteGlabel.Text) + 1).ToString(); }));
+                            if (friend.Equals(lr.ReadLine()) == true)
+                            {
+                                flag = true;
+                                break;
+                            }
                         }
-                        if (j == -1)
+                        lr.Close();
+                        if (flag == true)
                         {
-                            break; // лимит
+                            logGlabel.Invoke(new MethodInvoker(delegate { logGlabel.Text = (Int32.Parse(logGlabel.Text) + 1).ToString(); }));
+                            continue;
                         }
-                        if (j == -2)
+                        try
                         {
-                            StreamWriter writer = File.AppendText("inviting\\" + groups[g] + "\\all.txt");
-                            writer.WriteLine(friend, Encoding.UTF8);
-                            writer.Flush();
-                            writer.Close();
-                            writer = File.AppendText("inviting\\" + groups[g] + "\\bad.txt");
-                            writer.WriteLine(friend, Encoding.UTF8);
-                            writer.Flush();
-                            writer.Close();
+                            int j = vk.GroupsInvite(groups[g], friend, token);
+
+                            requestGlabel.Invoke(new MethodInvoker(delegate { requestGlabel.Text = (Int32.Parse(requestGlabel.Text) + 1).ToString(); }));
+                            if (j == 0)
+                            {
+                                StreamWriter writer = File.AppendText("inviting\\" + groups[g] + "\\all.txt");
+                                writer.WriteLine(friend, Encoding.UTF8);
+                                writer.Flush();
+                                writer.Close();
+                                writer = File.AppendText("inviting\\" + groups[g] + "\\good.txt");
+                                writer.WriteLine(friend, Encoding.UTF8);
+                                writer.Flush();
+                                writer.Close();
+                                inviteGlabel.Invoke(new MethodInvoker(delegate { inviteGlabel.Text = (Int32.Parse(inviteGlabel.Text) + 1).ToString(); }));
+                            }
+                            if (j == -1)
+                            {
+                                break; // лимит
+                            }
+                            if (j == -2)
+                            {
+                                StreamWriter writer = File.AppendText("inviting\\" + groups[g] + "\\all.txt");
+                                writer.WriteLine(friend, Encoding.UTF8);
+                                writer.Flush();
+                                writer.Close();
+                                writer = File.AppendText("inviting\\" + groups[g] + "\\bad.txt");
+                                writer.WriteLine(friend, Encoding.UTF8);
+                                writer.Flush();
+                                writer.Close();
+                            }
                         }
+                        catch (WebException e)
+                        {
+                            //AutoClosingMessageBox.Show("Проблемы с антикапчей", "", 2000);
+                        }
+                        int timesleep = rand.Next(min, max);
+                        if (listBox.Items[0].ToString().Contains("Задержка:"))
+                        {
+                            listBox.Invoke(new MethodInvoker(delegate { listBox.Items.RemoveAt(0); }));
+                        }
+                        listBox.Invoke(new MethodInvoker(delegate { listBox.Items.Insert(0, "Задержка: " + timesleep / 1000 + " сек."); }));
+                        Thread.Sleep(timesleep);
                     }
-                    catch (WebException e)
-                    {
-                        //AutoClosingMessageBox.Show("Проблемы с антикапчей", "", 2000);
-                    }
-                    int timesleep = rand.Next(min, max);
-                    if (listBox.Items[0].ToString().Contains("Задержка:"))
-                    {
-                        listBox.Invoke(new MethodInvoker(delegate { listBox.Items.RemoveAt(0); }));
-                    }
-                    listBox.Invoke(new MethodInvoker(delegate { listBox.Items.Insert(0, "Задержка: " + timesleep / 1000 + " сек."); }));
-                    Thread.Sleep(timesleep);
                 }
-
                 /////////////////////////////////
             }
             if(checkBox.Checked == true)
