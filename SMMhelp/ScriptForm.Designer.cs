@@ -63,7 +63,6 @@
             this.checkBox = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.antilabel = new System.Windows.Forms.Label();
-            this.countrylabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -391,10 +390,9 @@
             // checkBox
             // 
             this.checkBox.AutoSize = true;
-            this.checkBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.checkBox.Location = new System.Drawing.Point(12, 326);
+            this.checkBox.Location = new System.Drawing.Point(394, 64);
             this.checkBox.Name = "checkBox";
-            this.checkBox.Size = new System.Drawing.Size(155, 21);
+            this.checkBox.Size = new System.Drawing.Size(125, 17);
             this.checkBox.TabIndex = 54;
             this.checkBox.Text = "Выключить в конце";
             this.checkBox.UseVisualStyleBackColor = true;
@@ -419,24 +417,11 @@
             this.antilabel.TabIndex = 56;
             this.antilabel.Text = "0";
             // 
-            // countrylabel
-            // 
-            this.countrylabel.AutoSize = true;
-            this.countrylabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.countrylabel.Location = new System.Drawing.Point(198, 327);
-            this.countrylabel.Name = "countrylabel";
-            this.countrylabel.Size = new System.Drawing.Size(0, 17);
-            this.countrylabel.TabIndex = 57;
-            // 
             // ScriptForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
-            this.AutoSize = true;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(767, 354);
-            this.Controls.Add(this.countrylabel);
+            this.ClientSize = new System.Drawing.Size(767, 332);
             this.Controls.Add(this.antilabel);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.checkBox);
@@ -470,11 +455,8 @@
             this.Controls.Add(this.akklabel);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Enabled = false;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "ScriptForm";
-            this.Opacity = 0D;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "ScriptForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ScriptForm_FormClosing);
             this.Shown += new System.EventHandler(this.ScriptForm_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -520,6 +502,5 @@
         private System.Windows.Forms.Label antilabel;
         private System.Windows.Forms.DataGridViewTextBoxColumn Аккаунты;
         private System.Windows.Forms.DataGridViewTextBoxColumn Друзья;
-        private System.Windows.Forms.Label countrylabel;
     }
 }
