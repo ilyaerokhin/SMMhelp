@@ -49,13 +49,8 @@ namespace SMMhelp
                 return;
             }
 
-            countrylabel.Text = OFD.FileName.Substring(OFD.FileName.LastIndexOf('\\') + 1).Substring(0, OFD.FileName.Substring(OFD.FileName.LastIndexOf('\\') + 1).LastIndexOf('.'));
-
             thread.Start();
             thread2.Start();
-
-            this.Enabled = true;
-            this.Opacity = 1;
 
             flag = true;
         }
@@ -165,18 +160,9 @@ namespace SMMhelp
 
                 // В ДРУЗЬЯ
 
-                int age = rand.Next(14, 40);
+                int age = rand.Next(14, 35);
                 string people = vk.UsersSearch(0, age, token);
                 listBox.Invoke(new MethodInvoker(delegate { listBox.Items.Insert(0, "Получаем людей с возрастом = " + age.ToString()); }));
-
-                age = rand.Next(14, 40);
-                people = people + "/" + vk.UsersSearch(0, age, token);
-                listBox.Invoke(new MethodInvoker(delegate { listBox.Items.Insert(0, "Получаем людей с возрастом = " + age.ToString()); }));
-
-                age = rand.Next(14, 40);
-                people = people + "/" + vk.UsersSearch(0, age, token);
-                listBox.Invoke(new MethodInvoker(delegate { listBox.Items.Insert(0, "Получаем людей с возрастом = " + age.ToString()); }));
-
                 listBox.Invoke(new MethodInvoker(delegate { listBox.Items.Insert(0, "Начинаем приглашать"); }));
 
                 foreach (string friend in people.Split('/'))
@@ -258,7 +244,7 @@ namespace SMMhelp
                     count[g]--;
                     string list_friends = vk.FriendsGet(token);
                     listBox.Invoke(new MethodInvoker(delegate { listBox.Items.Insert(0, "Получаем список друзей"); }));
-                    listBox.Invoke(new MethodInvoker(delegate { listBox.Items.Insert(0, "Начинаем приглашать в vk.com/club" + groups[g]); }));
+                    listBox.Invoke(new MethodInvoker(delegate { listBox.Items.Insert(0, "Начинаем приглашать"); }));
 
                     foreach (string friend in list_friends.Split('/'))
                     {
