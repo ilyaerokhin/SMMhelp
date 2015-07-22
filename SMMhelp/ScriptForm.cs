@@ -62,11 +62,8 @@ namespace SMMhelp
 
         private void AntiGateBalance()
         {
-            for (; ; )
-            {
-                antilabel.Invoke(new MethodInvoker(delegate { antilabel.Text = AntiGate.GetBalance() + "$"; }));
-                Thread.Sleep(60000);
-            }
+            antilabel.Invoke(new MethodInvoker(delegate { antilabel.Text = AntiGate.GetBalance() + "$"; }));
+            Thread.Sleep(60000);
         }
 
         private void Fun()
@@ -76,7 +73,7 @@ namespace SMMhelp
             string line;
             posts = new List<string>();
             int cnt = 12;
-            int[] count = { 3, 3, /*4,*/ 3 };
+            int[] count = { 4, 4, /*4,*/ 4 };
             string[] groups = { "10682771", "65327228", /*"59375874",*/ "2001458" };
             DataTable dt = new DataTable();
 
